@@ -9,11 +9,11 @@ interface Props{
     title: string;
 }
 
-export function Home({ title } : Props){
+export function Home(){
 
     return (
         <Container>
-            <Title> {title} </Title>
+            <Title> Home </Title>
         </Container>
     );
 }
