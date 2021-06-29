@@ -16,8 +16,7 @@ import {
 
 
 export function Home(){
-    const cars: CarProps[] = [
-        {
+    const cars: CarProps = {
             brand: 'Audi',
             name: 'RS 5 Coupé',
             rent: {
@@ -25,8 +24,7 @@ export function Home(){
                 price: 340
             },
             thumbnail: 'https://pictures.dealer.com/a/audibrooklynnyaoa/1927/20995e45b1f28b176b0fccb0309e9e7ax.jpg?impolicy=downsize&w=568'
-        },
-];
+};
 
     return (
         <Container>
@@ -51,9 +49,9 @@ export function Home(){
             <CarList 
                 data={[1, 2, 3, 4, 5, 6, 7]}
                 keyExtractor={item => String(item)}
-                renderItem={({ item, index }) => (
+                renderItem={({ item }) => (
                     <Car 
-                        data={cars[0]}
+                        data={cars}
                     />
                 )}
             />
