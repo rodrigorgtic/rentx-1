@@ -4,18 +4,19 @@ import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import Logo from '../../assets/logo.svg';
-import { Car } from '../../components';
+import { Car, CarProps } from '../../components';
 
 import {
     Container,
     Header,
     TotalCars,
-    HeaderContent
+    HeaderContent,
+    CarList
 } from './styles'
 
 
 export function Home(){
-    const cars = [
+    const cars: CarProps[] = [
         {
             brand: 'Audi',
             name: 'RS 5 Coupé',
@@ -25,15 +26,6 @@ export function Home(){
             },
             thumbnail: 'https://pictures.dealer.com/a/audibrooklynnyaoa/1927/20995e45b1f28b176b0fccb0309e9e7ax.jpg?impolicy=downsize&w=568'
         },
-        {
-            brand: 'Porsche',
-            name: 'Panamera',
-            rent: {
-                period: 'AO DIA',
-                price: 130
-            },
-            thumbnail: 'https://images.dealer.com/ddc/vehicles/2019/Porsche/Panamera/Hatchback/perspective/front-left/2019_76.png'
-        }
 ];
 
     return (
@@ -56,11 +48,14 @@ export function Home(){
                 </HeaderContent>
             </Header>
 
-            <Car 
-                data={cars[0]}
-            />
-            <Car 
-                data={cars[1]}
+            <CarList 
+                data={[1, 2, 3, 4, 5, 6, 7]}
+                keyExtractor={item => String(item)}
+                renderItem={({ item, index }) => (
+                    <Car 
+                        data={cars[0]}
+                    />
+                )}
             />
         </Container>
     );

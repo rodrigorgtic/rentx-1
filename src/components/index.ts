@@ -1,5 +1,6 @@
-import { Car } from "./Car";
+import { Car, CarProps } from "./Car";
 
 export {
-    Car
+    Car,
+    CarProps
 };

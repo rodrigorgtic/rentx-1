@@ -20,7 +20,7 @@ interface RentProps{
     price: number;
 }
 
-interface CarProps{
+export interface CarProps{
     brand: string;
     name: string;
     rent: RentProps;
