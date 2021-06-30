@@ -3,7 +3,8 @@ import React from 'react';
 import {
     BackButton,
     ImageSlider,
-    Accessory
+    Accessory,
+    Button
 } from '../../components';
 
 import speedSvg from '../../assets/speed.svg';
@@ -26,7 +27,8 @@ import {
     Period,
     Price,
     About,
-    Acessories
+    Acessories,
+    Footer
 } from './styles'
 
 
@@ -95,6 +97,12 @@ export function CarDetails(){
                 </About>
 
             </Content>
+
+            <Footer>
+                <Button 
+                    title="Escolher período do Aluguel"
+                />
+            </Footer>
 
         </Container>
     );
