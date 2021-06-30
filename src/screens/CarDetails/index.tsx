@@ -2,8 +2,16 @@ import React from 'react';
 
 import {
     BackButton,
-    ImageSlider
+    ImageSlider,
+    Accessory
 } from '../../components';
+
+import speedSvg from '../../assets/speed.svg';
+import accelerationSvg from '../../assets/acceleration.svg';
+import forceSvg from '../../assets/force.svg';
+import gasolineSvg from '../../assets/gasoline.svg';
+import exchangeSvg from '../../assets/exchange.svg';
+import peopleSvg from '../../assets/people.svg';
 
 import {
     Container,
@@ -17,7 +25,8 @@ import {
     Rent,
     Period,
     Price,
-    About
+    About,
+    Acessories
 } from './styles'
 
 
@@ -50,6 +59,33 @@ export function CarDetails(){
                     </Rent>
 
                 </Details>
+
+                <Acessories>
+                    <Accessory 
+                        name="380Km/h"
+                        icon={speedSvg}
+                    />
+                    <Accessory 
+                        name="3.2s"
+                        icon={accelerationSvg}
+                    />
+                    <Accessory 
+                        name="800 HP"
+                        icon={forceSvg}
+                    />
+                    <Accessory 
+                        name="Gasolina"
+                        icon={gasolineSvg}
+                    />
+                    <Accessory 
+                        name="Auto"
+                        icon={exchangeSvg}
+                    />
+                    <Accessory 
+                        name="2 Pessoas"
+                        icon={peopleSvg}
+                    />
+                </Acessories>
 
                 <About>
                     Este é automóvel desportivo. Surgiu do
