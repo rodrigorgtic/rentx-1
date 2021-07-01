@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 
@@ -25,6 +26,15 @@ interface Props{}
 
 export function Scheduling(){
     const theme =  useTheme();
+    const navigation = useNavigation();
+
+    function handleConfirmRental(){
+        navigation.navigate('SchedulingDetails');
+    }
+
+    function handleGoBack(){
+        navigation.goBack();
+    }
 
     return (
         <Container>
@@ -36,7 +46,7 @@ export function Scheduling(){
             <Header> 
                 <BackButton
                     color={theme.colors.shape} 
-                    onPress={() => {}}
+                    onPress={handleGoBack}
                 />
 
             <Title>
@@ -69,7 +79,10 @@ export function Scheduling(){
             </Content>
 
             <Footer>
-                <Button title="confirmar"/>
+                <Button 
+                    title="confirmar"
+                    onPress={handleConfirmRental}
+                />
             </Footer>
 
         </Container>
