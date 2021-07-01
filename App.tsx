@@ -18,7 +18,8 @@ import {
   Home,
   CarDetails,
   Scheduling,
-  ShchedulingDetails
+  SchedulingDetails,
+  SchedulingComplete
 } from './src/screens';
 import theme from './src/global/styles/theme';
 
@@ -39,7 +40,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <ShchedulingDetails />
+      <SchedulingComplete />
     </ThemeProvider>
   );
 }

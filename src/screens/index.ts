@@ -1,11 +1,13 @@
 import { Home } from "./Home";
 import { CarDetails } from "./CarDetails";
 import { Scheduling } from "./Scheduling";
-import { ShchedulingDetails } from "./SchedulingDetails";
+import { SchedulingDetails } from "./SchedulingDetails";
+import { SchedulingComplete } from "./SchedulingComplete";
 
 export {
     Home,
     CarDetails,
     Scheduling,
-    ShchedulingDetails
+    SchedulingDetails,
+    SchedulingComplete
 };

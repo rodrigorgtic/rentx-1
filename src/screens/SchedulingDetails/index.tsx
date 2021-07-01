@@ -45,7 +45,7 @@ import {
 } from './styles'
 
 
-export function ShchedulingDetails(){
+export function SchedulingDetails(){
     const theme = useTheme();
 
     return (
