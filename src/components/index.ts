@@ -4,6 +4,7 @@ import { ImageSlider } from "./ImageSlider";
 import { Accessory } from "./Accessory";
 import { Button } from './Button';
 import { Calendar } from "./Calendar";
+import { ConfirmButton } from "./ConfirmButton";
 
 export {
     Car,
@@ -12,5 +13,6 @@ export {
     ImageSlider,
     Accessory,
     Button,
-    Calendar
+    Calendar,
+    ConfirmButton
 };
