@@ -18,7 +18,7 @@ import {
 
 interface RentProps{
     period: string;
-    price: number;
+    price: string;
 }
 
 export interface CarProps{

@@ -23,16 +23,6 @@ export function Home(){
     const [ loading, setLoading ] = useState(true);
     const navigation = useNavigation();
 
-    const carData: CarProps = {
-            brand: 'Audi',
-            name: 'RS 5 Coupé',
-            rent: {
-                period: 'AO DIA',
-                price: 340
-            },
-            thumbnail: 'https://pictures.dealer.com/a/audibrooklynnyaoa/1927/20995e45b1f28b176b0fccb0309e9e7ax.jpg?impolicy=downsize&w=568'
-    };
-
     function handleCarDetails(){
         navigation.navigate('CarDetails');
     };
