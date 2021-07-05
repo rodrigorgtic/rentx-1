@@ -7,7 +7,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import Logo from '../../assets/logo.svg';
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/CarDTO';
-import { Car, CarProps } from '../../components';
+import { Car, Load } from '../../components';
 
 import {
     Container,
@@ -23,8 +23,8 @@ export function Home(){
     const [ loading, setLoading ] = useState(true);
     const navigation = useNavigation();
 
-    function handleCarDetails(){
-        navigation.navigate('CarDetails');
+    function handleCarDetails(car: CarDTO){
+        navigation.navigate('CarDetails', { car });
     };
 
     useEffect(() => {
@@ -56,21 +56,25 @@ export function Home(){
                     />
 
                     <TotalCars>
-                        Total 12 carros
+                        Total { cars.length } carros
                     </TotalCars>
                 </HeaderContent>
             </Header>
+            {
+                loading
+                ?   <Load />
 
-            <CarList 
-                data={cars}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => (
-                    <Car 
-                        data={item}
-                        onPress={handleCarDetails}
+                :   <CarList 
+                        data={cars}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) => (
+                            <Car 
+                                data={item}
+                                onPress={() => handleCarDetails(item)}
+                            />
+                        )}
                     />
-                )}
-            />
+            }
         </Container>
     );
 }

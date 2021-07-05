@@ -5,6 +5,7 @@ import { Accessory } from "./Accessory";
 import { Button } from './Button';
 import { Calendar } from "./Calendar";
 import { ConfirmButton } from "./ConfirmButton";
+import { Load } from "./Load";
 
 export {
     Car,
@@ -14,5 +15,6 @@ export {
     Accessory,
     Button,
     Calendar,
-    ConfirmButton
+    ConfirmButton,
+    Load
 };
