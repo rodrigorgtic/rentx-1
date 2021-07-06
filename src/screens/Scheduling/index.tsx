@@ -8,7 +8,8 @@ import {
     Button,
     Calendar,
     DayProps,
-    generateInterval
+    generateInterval,
+    MarkedDateProps
 } from '../../components';
 
 
@@ -29,6 +30,7 @@ interface Props{}
 
 export function Scheduling(){
     const [ lastSelectedDate, setLastSelectedDate ] = useState<DayProps>({} as DayProps);
+    const [ markedDates, setMarkedDates ] = useState<MarkedDateProps>({} as MarkedDateProps);
     const theme =  useTheme();
     const navigation = useNavigation();
 
@@ -41,17 +43,16 @@ export function Scheduling(){
     }
 
     function handleChangeDate(date: DayProps){
-        let temp;
         let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
         let end = date;
 
         if(start.timestamp > end.timestamp){
-            temp = start;
             start = end;
-            end = temp;
+            end = start;
         }
         setLastSelectedDate(end);
         const interval = generateInterval(start, end);
+        setMarkedDates(interval);
     }
 
     return (
@@ -94,7 +95,7 @@ export function Scheduling(){
 
             <Content>
                 <Calendar 
-                    markedDate={{}}
+                    markedDate={markedDates}
                     onDayPress={handleChangeDate}
                 />
             </Content>
