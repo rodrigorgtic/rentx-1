@@ -32,6 +32,10 @@ export function Home(){
         navigation.navigate('CarDetails', { car });
     };
 
+    function handleOpenMyCars(){
+        navigation.navigate('MyCars');
+    }
+
     useEffect(() => {
         async function fetchCars() {
             try {
@@ -81,7 +85,9 @@ export function Home(){
                     />
             }
 
-            <MyCarsButton>
+            <MyCarsButton
+                onPress={handleOpenMyCars}
+            >
                 <Ionicons 
                     name="ios-car-sport"
                     size={32}
