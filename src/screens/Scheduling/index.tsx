@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -6,7 +6,8 @@ import { useTheme } from 'styled-components';
 import {
     BackButton,
     Button,
-    Calendar
+    Calendar,
+    DayProps
 } from '../../components';
 
 import ArrowSvg from '../../assets/arrow.svg';
@@ -25,6 +26,7 @@ import {
 interface Props{}
 
 export function Scheduling(){
+    const [ lastSelectedDate, setLastSelectedDate ] = useState<DayProps>({} as DayProps);
     const theme =  useTheme();
     const navigation = useNavigation();
 
@@ -34,6 +36,19 @@ export function Scheduling(){
 
     function handleGoBack(){
         navigation.goBack();
+    }
+
+    function handleChangeDate(date: DayProps){
+        let temp;
+        let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+        let end = date;
+
+        if(start.timestamp > end.timestamp){
+            temp = start;
+            start = end;
+            end = temp;
+        }
+        setLastSelectedDate(end);
     }
 
     return (
@@ -75,7 +90,10 @@ export function Scheduling(){
             </Header>
 
             <Content>
-                <Calendar />
+                <Calendar 
+                    markedDate={{}}
+                    onDayPress={handleChangeDate}
+                />
             </Content>
 
             <Footer>

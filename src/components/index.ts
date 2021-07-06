@@ -1,20 +1,21 @@
-import { Car, CarProps } from "./Car";
+import { Car } from "./Car";
 import { BackButton } from "./BackButton";
 import { ImageSlider } from "./ImageSlider";
 import { Accessory } from "./Accessory";
 import { Button } from './Button';
-import { Calendar } from "./Calendar";
+import { Calendar, MarkedDateProps, DayProps } from "./Calendar";
 import { ConfirmButton } from "./ConfirmButton";
 import { Load } from "./Load";
 
 export {
     Car,
-    CarProps,
     BackButton,
     ImageSlider,
     Accessory,
     Button,
     Calendar,
+    MarkedDateProps,
+    DayProps,
     ConfirmButton,
     Load
 };

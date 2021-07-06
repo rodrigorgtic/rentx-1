@@ -21,12 +21,20 @@ interface MarkedDateProps {
     }
 }
 
+interface DayProps{
+    dateString: string;
+    day: string;
+    month: number;
+    year: number;
+    timestamp: number;
+}
+
 interface CalendarProps{
     markedDate: MarkedDateProps;
     onDayPress: DateCallbackHandler;
 }
 
-export function Calendar({ markedDate, onDayPress } : CalendarProps){
+function Calendar({ markedDate, onDayPress } : CalendarProps){
     const theme = useTheme();
 
     return <CustomCalendar 
@@ -65,3 +73,9 @@ export function Calendar({ markedDate, onDayPress } : CalendarProps){
                 onDayPress={onDayPress}
            />
 }
+
+export {
+    Calendar,
+    MarkedDateProps,
+    DayProps
+};
