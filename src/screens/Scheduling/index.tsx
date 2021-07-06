@@ -7,8 +7,10 @@ import {
     BackButton,
     Button,
     Calendar,
-    DayProps
+    DayProps,
+    generateInterval
 } from '../../components';
+
 
 import ArrowSvg from '../../assets/arrow.svg';
 import {
@@ -49,6 +51,7 @@ export function Scheduling(){
             end = temp;
         }
         setLastSelectedDate(end);
+        const interval = generateInterval(start, end);
     }
 
     return (
