@@ -48,6 +48,8 @@ import {
 } from './styles';
 import { format } from 'date-fns';
 import { getPlatformDate } from '../../utils/getPlatformDate';
+import api from '../../services/api';
+import { Alert } from 'react-native';
 
 
 interface Params{
@@ -70,8 +72,21 @@ export function SchedulingDetails(){
 
     const rentTotal = Number(dates.length * Number(car.rent.price));
 
-    function handleConfirm(){
-        navigation.navigate('SchedulingComplete');
+    async function handleConfirm(){
+        const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
+
+        const unavailable_dates = [
+            ...schedulesByCar.data.unavailable_dates,
+            ...dates
+        ];
+
+        api.put(`/schedules_bycars/${car.id}`, {
+            id: car.id,
+            unavailable_dates
+        })
+        .then(() => navigation.navigate('SchedulingComplete'))
+        .catch(() => Alert.alert('Não foi possível confirmar o agendamento'))
+
     }
 
     function handleGoBack(){
