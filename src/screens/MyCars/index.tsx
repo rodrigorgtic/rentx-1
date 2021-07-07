@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { CarDTO } from '../../dtos/CarDTO';
 import api from '../../services/api';
+import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
+
+import { BackButton } from '../../components';
+
 
 import {
     Container,
+    Header,
+    SubTitle,
     Title
 } from './styles';
 
@@ -14,6 +21,12 @@ interface Props{
 export function MyCars({ title } : Props){
     const [ cars, setCars ] = useState<CarDTO[]>([]);
     const [loading, setLoading] = useState(true);
+    const theme = useTheme();
+    const navigation = useNavigation();
+
+    function handleGoBack(){
+        navigation.goBack();
+    }
 
     useEffect(() => {
         async function fetchCars(){
@@ -33,7 +46,23 @@ export function MyCars({ title } : Props){
 
     return (
         <Container>
-            <Title> {title} </Title>
+            <Header> 
+                <BackButton
+                    color={theme.colors.shape} 
+                    onPress={handleGoBack}
+                />
+
+                <Title>
+                    Escolha uma {'\n'}
+                    data de início e {'\n'}
+                    fim do aluguel
+                </Title>
+
+                <SubTitle>
+                    Conforto, segurança e praticidade.
+                </SubTitle>
+
+            </Header>
         </Container>
     );
 }
