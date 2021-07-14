@@ -2,41 +2,40 @@ import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-interface ImageIndexProps{
-    active: boolean;
+interface ImageIndexProps {
+  active: boolean;
 }
 
 export const Container = styled.View`
-    width: 100%;
+  width: 100%;
 `;
 
 export const ImageIndexes = styled.View`
-    flex-direction: row;
-    align-self: flex-end;
-    padding-right: 24px;
+  flex-direction: row;
+  align-self: flex-end;
+  padding-right: 24px;
 `;
 
 export const ImageIndex = styled.View<ImageIndexProps>`
-    width: 6px;
-    height: 6px;
+  width: 6px;
+  height: 6px;
 
-    background-color: ${ ({ theme, active }) => 
-        active ? theme.colors.title : theme.colors.shape
-    };
+  background-color: ${({ theme, active }) =>
+    active ? theme.colors.title : theme.colors.shape};
 
-    margin-left: 8px;
-    border-radius: 3px;
+  margin-left: 8px;
+  border-radius: 3px;
 `;
 
 export const CarImageWrapper = styled.View`
-    width: ${Dimensions.get('window').width}px;
-    height: 132px;
+  width: ${Dimensions.get('window').width}px;
+  height: 132px;
 
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CarImage = styled.Image`
-    width: ${RFValue(280)}px;
-    height: ${RFValue(132)}px;
+  width: ${RFValue(280)}px;
+  height: ${RFValue(132)}px;
 `;
