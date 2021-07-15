@@ -1,6 +1,16 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import Animated, {
+  useSharedValue,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  Extrapolate,
+  interpolate,
+} from 'react-native-reanimated';
+
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { BackButton, ImageSlider, Accessory, Button } from '../../components';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
@@ -9,7 +19,6 @@ import {
   Container,
   Header,
   CardImage,
-  Content,
   Details,
   Description,
   Brand,
@@ -32,6 +41,22 @@ export function CarDetails() {
   const route = useRoute();
   const { car } = route.params as Params;
 
+  const scrollY = useSharedValue(0);
+  const scrollHandle = useAnimatedScrollHandler(event => {
+    scrollY.value = event.contentOffset.y;
+  });
+
+  const headerStyleAnimation = useAnimatedStyle(() => {
+    return {
+      height: interpolate(
+        scrollY.value,
+        [0, 200],
+        [200, 70],
+        Extrapolate.CLAMP,
+      ),
+    };
+  });
+
   function handleConfirmRental() {
     navigation.navigate('Scheduling', { car });
   }
@@ -42,15 +67,29 @@ export function CarDetails() {
 
   return (
     <Container>
-      <Header>
-        <BackButton onPress={handleGoBack} />
-      </Header>
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor="transparent"
+      />
+      <Animated.View style={headerStyleAnimation}>
+        <Header>
+          <BackButton onPress={handleGoBack} />
+        </Header>
 
-      <CardImage>
-        <ImageSlider imagesUrl={car.photos} />
-      </CardImage>
+        <CardImage>
+          <ImageSlider imagesUrl={car.photos} />
+        </CardImage>
+      </Animated.View>
 
-      <Content>
+      <Animated.ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingTop: getStatusBarHeight(),
+        }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandle}
+      >
         <Details>
           <Description>
             <Brand> {car.brand} </Brand>
@@ -73,8 +112,15 @@ export function CarDetails() {
           ))}
         </Acessories>
 
-        <About>{car.about}</About>
-      </Content>
+        <About>
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+          {car.about}
+        </About>
+      </Animated.ScrollView>
 
       <Footer>
         <Button
