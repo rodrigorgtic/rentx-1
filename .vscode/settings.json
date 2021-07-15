@@ -1,7 +1,7 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.suggest.preview": true,
+    "editor.suggest.shareSuggestSelections": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.suggest.showStatusBar": true,
+    "editor.suggestOnTriggerCharacters": false
 }
