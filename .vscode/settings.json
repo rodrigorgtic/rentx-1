@@ -3,5 +3,6 @@
     "editor.suggest.shareSuggestSelections": true,
     "editor.inlineSuggest.enabled": true,
     "editor.suggest.showStatusBar": true,
-    "editor.suggestOnTriggerCharacters": false
+    "editor.suggestOnTriggerCharacters": false,
+    "vsintellicode.typescript.completionsEnabled": true
 }
