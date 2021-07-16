@@ -51,3 +51,9 @@ export const MyCarsButton = styled(RectButton)`
 
   background-color: ${({ theme }) => theme.colors.main};
 `;
+
+export const LoadContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;

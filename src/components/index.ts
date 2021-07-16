@@ -7,6 +7,7 @@ import { Calendar, MarkedDateProps, DayProps } from './Calendar';
 import { generateInterval } from './Calendar/generateInterval';
 import { ConfirmButton } from './ConfirmButton';
 import { Load } from './Load';
+import { LoadAnimation } from './LoadAnimation';
 
 export {
   Car,
@@ -20,4 +21,5 @@ export {
   generateInterval,
   ConfirmButton,
   Load,
+  LoadAnimation,
 };

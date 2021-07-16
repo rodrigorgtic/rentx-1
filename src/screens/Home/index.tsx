@@ -17,9 +17,16 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import Logo from '../../assets/logo.svg';
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/CarDTO';
-import { Car, Load } from '../../components';
+import { Car, LoadAnimation } from '../../components';
 
-import { Container, Header, TotalCars, HeaderContent, CarList } from './styles';
+import {
+  Container,
+  Header,
+  TotalCars,
+  HeaderContent,
+  CarList,
+  LoadContainer,
+} from './styles';
 
 const ButtonAnimated = Animated.createAnimatedComponent(RectButton);
 
@@ -98,7 +105,9 @@ export function Home() {
         </HeaderContent>
       </Header>
       {loading ? (
-        <Load />
+        <LoadContainer>
+          <LoadAnimation />
+        </LoadContainer>
       ) : (
         <CarList
           data={cars}
