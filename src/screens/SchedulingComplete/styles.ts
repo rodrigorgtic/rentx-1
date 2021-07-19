@@ -19,7 +19,7 @@ export const Content = styled.View`
 export const Title = styled.Text`
   font-size: ${RFValue(30)}px;
   color: ${({ theme }) => theme.colors.shape};
-  font-family: ${({ theme }) => theme.fonts.secindary_600};
+  font-family: ${({ theme }) => theme.fonts.secondary_600};
 
   margin-top: ${RFValue(40)}px;
 `;

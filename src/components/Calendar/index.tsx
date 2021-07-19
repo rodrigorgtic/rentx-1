@@ -57,7 +57,7 @@ function Calendar({ markedDate, onDayPress }: CalendarProps) {
         textDayHeaderFontFamily: theme.fonts.primary_500,
         textDayHeaderFontSize: 10,
         textMonthFontSize: 20,
-        textMonthFontFamily: theme.fonts.secindary_600,
+        textMonthFontFamily: theme.fonts.secondary_600,
         monthTextColor: theme.colors.title,
         arrowStyle: {
           marginHorizontal: -15,

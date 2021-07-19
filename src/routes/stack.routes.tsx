@@ -10,14 +10,15 @@ import {
   SchedulingDetails,
   MyCars,
   Splash,
+  SingIn,
 } from '../screens';
 
 const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="Splash">
-      <Screen name="Splash" component={Splash} />
+    <Navigator headerMode="none" initialRouteName="SingIn">
+      <Screen name="SingIn" component={SingIn} />
       <Screen
         name="Home"
         component={Home}

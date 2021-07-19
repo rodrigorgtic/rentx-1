@@ -5,6 +5,7 @@ import { SchedulingDetails } from './SchedulingDetails';
 import { SchedulingComplete } from './SchedulingComplete';
 import { MyCars } from './MyCars';
 import { Splash } from './Splash/index';
+import { SingIn } from './SingIn';
 
 export {
   Home,
@@ -14,4 +15,5 @@ export {
   SchedulingComplete,
   MyCars,
   Splash,
+  SingIn,
 };
