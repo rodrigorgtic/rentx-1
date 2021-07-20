@@ -8,6 +8,8 @@ import { generateInterval } from './Calendar/generateInterval';
 import { ConfirmButton } from './ConfirmButton';
 import { Load } from './Load';
 import { LoadAnimation } from './LoadAnimation';
+import { Input } from './Input';
+import { InputPassword } from './InputPassword';
 
 export {
   Car,
@@ -22,4 +24,6 @@ export {
   ConfirmButton,
   Load,
   LoadAnimation,
+  Input,
+  InputPassword,
 };

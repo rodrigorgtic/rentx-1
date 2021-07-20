@@ -2,9 +2,9 @@ import React from 'react';
 import { useTheme } from 'styled-components';
 import { StatusBar } from 'react-native';
 
-import { Button } from '../../components';
+import { Button, Input, InputPassword } from '../../components';
 
-import { Container, Header, Title, Subtitle, Footer } from './styles';
+import { Container, Header, Title, Subtitle, Form, Footer } from './styles';
 
 export function SingIn() {
   const theme = useTheme();
@@ -26,6 +26,17 @@ export function SingIn() {
           uma experiência incrível.
         </Subtitle>
       </Header>
+
+      <Form>
+        <Input
+          iconName="mail"
+          placeholder="E-mail"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+        <InputPassword iconName="lock" placeholder="Senha" />
+      </Form>
 
       <Footer>
         <Button
