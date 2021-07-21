@@ -11,6 +11,8 @@ import { useTheme } from 'styled-components';
 
 import { BackButton, Bullet, InputPassword, Button } from '../../../components';
 
+import { ConfirmationParams } from '../../index';
+
 import {
   Container,
   Header,
@@ -53,7 +55,13 @@ export function SingUpSecondStep() {
     if (password !== repeatPassword) {
       return Alert.alert('As senhas não são iguais');
     }
-    return undefined;
+
+    navigation.navigate('Confirmation', {
+      nextScreenRoute: 'SingIn',
+      title: 'Conta criada!',
+      message: 'Agora é só fazer login\ne aproveitar',
+    } as ConfirmationParams);
+    return 0;
   }
 
   return (

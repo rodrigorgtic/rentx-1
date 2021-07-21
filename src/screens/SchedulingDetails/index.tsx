@@ -7,6 +7,7 @@ import { useTheme } from 'styled-components';
 import { format } from 'date-fns';
 import { Alert } from 'react-native';
 import { BackButton, ImageSlider, Accessory, Button } from '../../components';
+import { ConfirmationParams } from '../index';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -85,7 +86,12 @@ export function SchedulingDetails() {
         unavailable_dates,
       })
       .then(() => {
-        navigation.navigate('SchedulingComplete');
+        navigation.navigate('Confirmation', {
+          title: 'Carro alugado!',
+          message:
+            'Agora você só precisa ir\naté a concessionária da RENTX\npegar seu automóvel',
+          nextScreenRoute: 'Home',
+        } as ConfirmationParams);
       })
       .catch(() => {
         setLoading(false);

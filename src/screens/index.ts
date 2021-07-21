@@ -2,7 +2,7 @@ import { Home } from './Home';
 import { CarDetails } from './CarDetails';
 import { Scheduling } from './Scheduling';
 import { SchedulingDetails } from './SchedulingDetails';
-import { SchedulingComplete } from './SchedulingComplete';
+import { Confirmation, ConfirmationParams } from './Confirmation';
 import { MyCars } from './MyCars';
 import { Splash } from './Splash/index';
 import { SingIn } from './SingIn';
@@ -14,7 +14,8 @@ export {
   CarDetails,
   Scheduling,
   SchedulingDetails,
-  SchedulingComplete,
+  Confirmation,
+  ConfirmationParams,
   MyCars,
   Splash,
   SingIn,
