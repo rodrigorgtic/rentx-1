@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import {
   StatusBar,
@@ -17,6 +18,7 @@ export function SingIn() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const theme = useTheme();
+  const navigation = useNavigation();
 
   async function handleSingIn(): Promise<void> {
     try {
@@ -39,6 +41,10 @@ export function SingIn() {
         );
       }
     }
+  }
+
+  function handleNewAccount() {
+    navigation.navigate('SingUṕFirstStep');
   }
 
   return (
@@ -91,8 +97,8 @@ export function SingIn() {
               title="Criar conta gratuita"
               color={theme.colors.background_secondary}
               light
-              onPress={() => {}}
-              enabled={false}
+              onPress={handleNewAccount}
+              enabled
               loading={false}
             />
           </Footer>

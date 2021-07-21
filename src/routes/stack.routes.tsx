@@ -11,6 +11,7 @@ import {
   MyCars,
   Splash,
   SingIn,
+  SingUṕFirstStep,
 } from '../screens';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -19,6 +20,7 @@ export function StackRoutes() {
   return (
     <Navigator headerMode="none" initialRouteName="SingIn">
       <Screen name="SingIn" component={SingIn} />
+      <Screen name="SingUṕFirstStep" component={SingUṕFirstStep} />
       <Screen
         name="Home"
         component={Home}
