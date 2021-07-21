@@ -16,6 +16,8 @@ export function SingIn() {
   const [password, setPassword] = useState<string>('');
   const theme = useTheme();
 
+  function handleSingIn() {}
+
   return (
     <KeyboardAvoidingView behavior="position" enabled>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -58,7 +60,7 @@ export function SingIn() {
           <Footer>
             <Button
               title="Login"
-              onPress={() => {}}
+              onPress={handleSingIn}
               enabled={false}
               loading={false}
             />
