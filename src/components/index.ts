@@ -10,6 +10,7 @@ import { Load } from './Load';
 import { LoadAnimation } from './LoadAnimation';
 import { Input } from './Input';
 import { InputPassword } from './InputPassword';
+import { Bullet } from './Bullet';
 
 export {
   Car,
@@ -26,4 +27,5 @@ export {
   LoadAnimation,
   Input,
   InputPassword,
+  Bullet,
 };

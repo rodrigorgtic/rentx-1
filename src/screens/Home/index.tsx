@@ -101,7 +101,7 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          {!loading && <TotalCars>Total {cars.length} carros</TotalCars>}
+          {!loading && <TotalCars>Total {`${cars.length}`} carros</TotalCars>}
         </HeaderContent>
       </Header>
       {loading ? (
