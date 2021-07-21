@@ -44,7 +44,7 @@ export function SingIn() {
   }
 
   function handleNewAccount() {
-    navigation.navigate('SingUṕFirstStep');
+    navigation.navigate('SingUpFirstStep');
   }
 
   return (

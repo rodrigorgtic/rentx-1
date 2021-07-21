@@ -5,8 +5,9 @@ import {
   Keyboard,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from 'styled-components';
 
-import { BackButton, Bullet, Input, Button } from '../../../components';
+import { BackButton, Bullet, InputPassword, Button } from '../../../components';
 
 import {
   Container,
@@ -18,15 +19,12 @@ import {
   FormTitle,
 } from './styles';
 
-export function SingUpFirstStep() {
+export function SingUpSecondStep() {
   const navigation = useNavigation();
+  const theme = useTheme();
 
   function handleBack() {
     navigation.goBack();
-  }
-
-  function handleNextStep() {
-    navigation.navigate('SingUpSecondStep');
   }
 
   return (
@@ -36,8 +34,8 @@ export function SingUpFirstStep() {
           <Header>
             <BackButton onPress={handleBack} />
             <Steps>
-              <Bullet active />
               <Bullet />
+              <Bullet active />
             </Steps>
           </Header>
           <Title>
@@ -49,20 +47,11 @@ export function SingUpFirstStep() {
             forma rápida e fácil
           </Subtitle>
           <Form>
-            <FormTitle>1. Dados</FormTitle>
-            <Input iconName="user" placeholder="Nome" />
-            <Input
-              iconName="mail"
-              placeholder="E-mail"
-              keyboardType="email-address"
-            />
-            <Input
-              iconName="credit-card"
-              placeholder="CNH"
-              keyboardType="numeric"
-            />
+            <FormTitle>2. Senha</FormTitle>
+            <InputPassword iconName="lock" placeholder="Senha" />
+            <InputPassword iconName="lock" placeholder="Repetir senha" />
           </Form>
-          <Button title="Próximo" onPress={handleNextStep} />
+          <Button title="Cadastrar" color={theme.colors.success} />
         </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

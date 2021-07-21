@@ -6,7 +6,8 @@ import { SchedulingComplete } from './SchedulingComplete';
 import { MyCars } from './MyCars';
 import { Splash } from './Splash/index';
 import { SingIn } from './SingIn';
-import { SingUṕFirstStep } from './SingUp/SingUpFirstStep';
+import { SingUpFirstStep } from './SingUp/SingUpFirstStep';
+import { SingUpSecondStep } from './SingUp/SingUpSecondStep';
 
 export {
   Home,
@@ -17,5 +18,6 @@ export {
   MyCars,
   Splash,
   SingIn,
-  SingUṕFirstStep,
+  SingUpFirstStep,
+  SingUpSecondStep,
 };
