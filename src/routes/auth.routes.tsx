@@ -10,11 +10,11 @@ import {
   SingUpSecondStep,
 } from '../screens';
 
-const { Navigator, Screen } = createTabM;
+const { Navigator, Screen } = createStackNavigator();
 
 export function AuthRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="SingIn">
+    <Navigator headerMode="none" initialRouteName="Slash">
       <Screen name="Splash" component={Splash} />
       <Screen name="SingIn" component={SingIn} />
       <Screen name="SingUpFirstStep" component={SingUpFirstStep} />

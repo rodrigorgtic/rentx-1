@@ -9,25 +9,14 @@ import {
   Confirmation,
   SchedulingDetails,
   MyCars,
-  Splash,
-  SingIn,
-  SingUpFirstStep,
-  SingUpSecondStep,
 } from '../screens';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export function StackRoutes() {
+export function AppStackRoutes() {
   return (
     <Navigator headerMode="none" initialRouteName="Home">
-      <Screen name="SingIn" component={SingIn} />
-      <Screen name="SingUpFirstStep" component={SingUpFirstStep} />
-      <Screen name="SingUpSecondStep" component={SingUpSecondStep} />
-      <Screen
-        name="Home"
-        component={Home}
-        options={{ gestureEnabled: false }}
-      />
+      <Screen name="Home" component={Home} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="Confirmation" component={Confirmation} />

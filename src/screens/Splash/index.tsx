@@ -9,6 +9,7 @@ import Animated, {
   runOnJS,
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
@@ -18,6 +19,7 @@ import { Container } from './styles';
 export function Splash() {
   const splashAnimation = useSharedValue(0);
   const navigation = useNavigation();
+  const { user } = useAuth();
 
   const brandStyle = useAnimatedStyle(() => {
     return {
@@ -52,7 +54,8 @@ export function Splash() {
   });
 
   function startApp() {
-    navigation.navigate('Home');
+    const nextScreen = user ? 'Home' : 'SingIn';
+    navigation.navigate(nextScreen);
   }
 
   useEffect(() => {
