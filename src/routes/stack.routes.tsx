@@ -19,7 +19,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="SingIn">
+    <Navigator headerMode="none" initialRouteName="Home">
       <Screen name="SingIn" component={SingIn} />
       <Screen name="SingUpFirstStep" component={SingUpFirstStep} />
       <Screen name="SingUpSecondStep" component={SingUpSecondStep} />

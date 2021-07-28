@@ -4,7 +4,7 @@ interface IAccessories {
   name: string;
 }
 
-interface IPhotos {
+export interface IPhotos {
   id: string;
   photo: string;
 }
