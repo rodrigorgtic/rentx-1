@@ -4,10 +4,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  AlertStatic,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import api from '../../../services/api';
 
 import { BackButton, Bullet, InputPassword, Button } from '../../../components';
 
@@ -41,13 +41,12 @@ export function SingUpSecondStep() {
   const theme = useTheme();
 
   const { user } = route.params as Params;
-  console.log(user);
 
   function handleBack() {
     navigation.goBack();
   }
 
-  function handleRegister() {
+  async function handleRegister(): Promise<void> {
     if (!password || !repeatPassword) {
       return Alert.alert('Informe a senha e a confirmação.');
     }
@@ -56,12 +55,26 @@ export function SingUpSecondStep() {
       return Alert.alert('As senhas não são iguais');
     }
 
-    navigation.navigate('Confirmation', {
-      nextScreenRoute: 'SingIn',
-      title: 'Conta criada!',
-      message: 'Agora é só fazer login\ne aproveitar',
-    } as ConfirmationParams);
-    return 0;
+    await api
+      .post('/users', {
+        name: user.name,
+        email: user.email,
+        driver_license: user.driverLicense,
+        password,
+      })
+      .then(() => {
+        navigation.navigate('Confirmation', {
+          nextScreenRoute: 'SingIn',
+          title: 'Conta criada!',
+          message: 'Agora é só fazer login\ne aproveitar',
+        } as ConfirmationParams);
+      })
+      .catch(error => {
+        const ERROR = new Error(error);
+        console.log(ERROR.message);
+        Alert.alert('Opa!', 'Não foi possível efetuar o cadastro.');
+      });
+    return undefined;
   }
 
   return (
