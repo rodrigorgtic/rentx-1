@@ -16,14 +16,8 @@ import {
 
 import { Routes } from './src/routes';
 
-import {
-  Home,
-  CarDetails,
-  Scheduling,
-  SchedulingDetails,
-  SchedulingComplete,
-} from './src/screens';
 import theme from './src/global/styles/theme';
+import { AppProvider } from './src/hooks';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -40,7 +34,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }

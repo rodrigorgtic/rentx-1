@@ -40,7 +40,7 @@
         "import/no-extraneous-dependencies": "off",
         "no-console": "off",
         "camelcase": "off",
-        "no-unused-vars": "warn",
+        "no-unused-vars": ["warn", {"vars": "all", "args": "after-used"}],
         "react-hooks/exhaustive-deps": "off",
         "react/require-default-props": "off",
         "react/jsx-props-no-spreading": "off"

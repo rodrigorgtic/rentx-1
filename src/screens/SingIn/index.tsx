@@ -13,12 +13,14 @@ import * as Yup from 'yup';
 import { Button, Input, InputPassword } from '../../components';
 
 import { Container, Header, Title, Subtitle, Form, Footer } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 export function SingIn() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const theme = useTheme();
   const navigation = useNavigation();
+  const { singIn } = useAuth();
 
   async function handleSingIn(): Promise<void> {
     try {
@@ -31,6 +33,8 @@ export function SingIn() {
 
       await schema.validate({ email, password });
       Alert.alert('Tudo certo!');
+
+      singIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert('Atenção', error.message);
