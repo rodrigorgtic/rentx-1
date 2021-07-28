@@ -38,7 +38,7 @@ export function AppTabRoutes() {
         name="Home"
         component={AppStackRoutes}
         options={{
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color }: TabBarIconProps) => (
             <HomeSvg width={24} height={24} fill={color} />
           ),
         }}
