@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import {
@@ -14,6 +14,8 @@ import { Button, Input, InputPassword } from '../../components';
 
 import { Container, Header, Title, Subtitle, Form, Footer } from './styles';
 import { useAuth } from '../../hooks/auth';
+
+import { database } from '../../database';
 
 export function SingIn() {
   const [email, setEmail] = useState<string>('');
@@ -50,6 +52,14 @@ export function SingIn() {
   function handleNewAccount() {
     navigation.navigate('SingUpFirstStep');
   }
+
+  useEffect(() => {
+    async function loadData() {
+      const userCollection = database.get('users');
+      const users = await userCollection.query().fetch();
+      console.log(users);
+    }
+  }, []);
 
   return (
     <KeyboardAvoidingView behavior="position" enabled>
