@@ -54,7 +54,7 @@ export function Splash() {
   });
 
   function startApp() {
-    const nextScreen = user ? 'Home' : 'SingIn';
+    const nextScreen = user.id ? 'Home' : 'SingIn';
     navigation.navigate(nextScreen);
   }
 

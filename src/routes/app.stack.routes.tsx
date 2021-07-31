@@ -9,13 +9,15 @@ import {
   Confirmation,
   SchedulingDetails,
   MyCars,
+  Splash,
 } from '../screens';
 
 const { Navigator, Screen } = createStackNavigator();
 
 export function AppStackRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="Home">
+    <Navigator headerMode="none" initialRouteName="Spash">
+      <Screen name="Splash" component={Splash} />
       <Screen name="Home" component={Home} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />

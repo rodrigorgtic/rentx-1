@@ -11,7 +11,7 @@ class User extends Model {
   name!: string;
 
   @field('email')
-  eamail!: string;
+  email!: string;
 
   @field('driver_license')
   driver_license!: string;
@@ -19,7 +19,7 @@ class User extends Model {
   @field('avatar')
   avatar!: string;
 
-  @field('tolen')
+  @field('token')
   token!: string;
 }
 

@@ -1,17 +1,30 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from 'react';
 import api from '../services/api';
+
+import { database } from '../database';
+import { User as ModelUser } from '../database/models/User';
 
 interface User {
   id: string;
+  user_id: string;
   email: string;
   name: string;
   drever_license: string;
   avatar: string;
+  token: string;
 }
 
-interface AuthState {
+type UserWithoutToken = Omit<User, 'token'>;
+
+interface ApiResponse {
+  user: UserWithoutToken;
   token: string;
-  user: User;
 }
 
 interface SingInCredentials {
@@ -32,20 +45,54 @@ interface AuthProviderProps {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [data, setData] = useState<AuthState>({} as AuthState);
+  const [data, setData] = useState<User>({} as User);
 
   async function singIn({ email, password }: SingInCredentials) {
-    const response = await api.post('/sessions', { email, password });
+    try {
+      const response = await api.post('/sessions', { email, password });
 
-    const { token, user } = response.data as AuthState;
+      const { token, user } = (await response.data) as ApiResponse;
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
-    setData({ token, user });
+      const avatar = user.avatar != null ? user.avatar : '';
+
+      const userCollection = await database.get<ModelUser>('users');
+      await database.write(async () => {
+        await userCollection.create(newUser => {
+          newUser.user_id = user.id;
+          newUser.name = user.name;
+          newUser.email = user.email;
+          newUser.driver_license = user.drever_license;
+          newUser.avatar = avatar;
+          newUser.token = token;
+        });
+      });
+
+      setData({ ...user, token });
+    } catch (error) {
+      const e = String(error);
+      throw new Error(e);
+    }
   }
 
+  useEffect(() => {
+    async function loadUserData() {
+      const userCollection = database.get<ModelUser>('users');
+      const response = await userCollection.query().fetch();
+
+      if (response.length > 0) {
+        const userData = response[0]._raw as unknown as User;
+        api.defaults.headers.authorization = `Bearer ${userData.token}`;
+        setData(userData);
+      }
+    }
+
+    loadUserData();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, singIn }}>
+    <AuthContext.Provider value={{ user: data, singIn }}>
       {children}
     </AuthContext.Provider>
   );

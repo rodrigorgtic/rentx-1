@@ -43,7 +43,9 @@
         "no-unused-vars": ["warn", {"vars": "all", "args": "after-used"}],
         "react-hooks/exhaustive-deps": "off",
         "react/require-default-props": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "no-param-reassign": [1, {"props": false}],
+        "no-underscore-dangle": "off"
     },
     "settings": {
       "import/resolver": {
