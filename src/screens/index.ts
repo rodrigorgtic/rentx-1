@@ -8,6 +8,7 @@ import { Splash } from './Splash/index';
 import { SingIn } from './SingIn';
 import { SingUpFirstStep } from './SingUp/SingUpFirstStep';
 import { SingUpSecondStep } from './SingUp/SingUpSecondStep';
+import { Profile } from './Profile';
 
 export {
   Home,
@@ -21,4 +22,5 @@ export {
   SingIn,
   SingUpFirstStep,
   SingUpSecondStep,
+  Profile,
 };

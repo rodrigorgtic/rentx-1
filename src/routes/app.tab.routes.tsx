@@ -8,7 +8,7 @@ import HomeSvg from '../assets/home.svg';
 import CarSvg from '../assets/car.svg';
 import PeopleSvg from '../assets/people.svg';
 
-import { Home, MyCars } from '../screens';
+import { Profile, MyCars } from '../screens';
 import { AppStackRoutes } from './app.stack.routes';
 
 interface TabBarIconProps {
@@ -44,8 +44,8 @@ export function AppTabRoutes() {
         }}
       />
       <Screen
-        name="Profile"
-        component={Home}
+        name="MyCars"
+        component={MyCars}
         options={{
           tabBarIcon: ({ color }: TabBarIconProps) => (
             <CarSvg width={24} height={24} fill={color} />
@@ -53,8 +53,8 @@ export function AppTabRoutes() {
         }}
       />
       <Screen
-        name="MyCars"
-        component={MyCars}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({ color }: TabBarIconProps) => (
             <PeopleSvg width={24} height={24} fill={color} />
