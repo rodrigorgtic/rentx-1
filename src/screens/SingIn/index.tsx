@@ -32,7 +32,6 @@ export function SingIn() {
       });
 
       await schema.validate({ email, password });
-      Alert.alert('Tudo certo!');
 
       singIn({ email, password });
     } catch (error) {
