@@ -16,8 +16,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function AppStackRoutes() {
   return (
-    <Navigator headerMode="none" initialRouteName="Spash">
-      <Screen name="Splash" component={Splash} />
+    <Navigator headerMode="none" initialRouteName="Home">
       <Screen name="Home" component={Home} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
