@@ -33,7 +33,7 @@ import {
 type OptionType = 'dataEdit' | 'passwordEdit';
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, SingOut } = useAuth();
   const [option, setOption] = useState<OptionType>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
   const [name, setName] = useState(user.name);
@@ -47,7 +47,9 @@ export function Profile() {
     navigaton.goBack();
   }
 
-  function handleSingOut(): void {}
+  async function handleSingOut(): Promise<void> {
+    await SingOut();
+  }
 
   function handleOptionChange(optionSelected: OptionType) {
     setOption(optionSelected);
