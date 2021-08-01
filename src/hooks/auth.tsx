@@ -36,6 +36,7 @@ interface AuthContextData {
   user: User;
   // eslint-disable-next-line no-unused-vars
   singIn(credentials: SingInCredentials): Promise<void>;
+  SingOut(): Promise<void>;
 }
 
 interface AuthProviderProps {
@@ -76,6 +77,21 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function SingOut() {
+    try {
+      const userCollection = database.get<ModelUser>('users');
+      await database.write(async () => {
+        const userSelected = await userCollection.find(data.id);
+        await userSelected.destroyPermanently();
+      });
+
+      setData({} as User);
+    } catch (error) {
+      const e = String(error);
+      throw new Error(e);
+    }
+  }
+
   useEffect(() => {
     async function loadUserData() {
       const userCollection = database.get<ModelUser>('users');
@@ -92,7 +108,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data, singIn }}>
+    <AuthContext.Provider value={{ user: data, singIn, SingOut }}>
       {children}
     </AuthContext.Provider>
   );
