@@ -4,6 +4,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
@@ -32,11 +33,14 @@ import {
 type OptionType = 'dataEdit' | 'passwordEdit';
 
 export function Profile() {
+  const { user } = useAuth();
   const [option, setOption] = useState<OptionType>('dataEdit');
+  const [avatar, setAvatar] = useState(user.avatar);
+  const [name, setName] = useState(user.name);
+  const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
   const theme = useTheme();
   const { shape } = theme.colors;
-  const { user } = useAuth();
   const navigaton = useNavigation();
 
   function handleBack() {
@@ -47,6 +51,23 @@ export function Profile() {
 
   function handleOptionChange(optionSelected: OptionType) {
     setOption(optionSelected);
+  }
+
+  async function handleAvatarSelect() {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+
+    if (result.cancelled) {
+      return;
+    }
+
+    if (result.uri) {
+      setAvatar(result.uri);
+    }
   }
 
   return (
@@ -63,9 +84,8 @@ export function Profile() {
             </HeaderTop>
 
             <PhotoContainer>
-              <Photo source={{ uri: 'https://github.com/jnunes-ds.png' }} />
-
-              <PhotoButton onPress={() => {}}>
+              {!!avatar && <Photo source={{ uri: avatar }} />}
+              <PhotoButton onPress={handleAvatarSelect}>
                 <Feather name="camera" size={24} color={shape} />
               </PhotoButton>
             </PhotoContainer>
@@ -94,7 +114,8 @@ export function Profile() {
                   iconName="user"
                   placeholder="Nome"
                   autoCorrect={false}
-                  defaultValue={user.name}
+                  defaultValue={name}
+                  onChangeText={setName}
                 />
                 <Input
                   iconName="mail"
@@ -105,7 +126,8 @@ export function Profile() {
                   iconName="credit-card"
                   placeholder="CNH"
                   keyboardType="numeric"
-                  defaultValue={user.driver_license}
+                  defaultValue={driverLicense}
+                  onChangeText={setDriverLicense}
                 />
               </Section>
             ) : (
