@@ -10,7 +10,7 @@ export function Routes() {
   const { user } = useAuth();
   return (
     <NavigationContainer>
-      {user.id ? <AppTabRoutes /> : <AuthRoutes />}
+      {user.driver_license ? <AppTabRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }

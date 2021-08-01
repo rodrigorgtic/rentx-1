@@ -15,7 +15,7 @@ interface User {
   user_id: string;
   email: string;
   name: string;
-  drever_license: string;
+  driver_license: string;
   avatar: string;
   token: string;
 }
@@ -63,7 +63,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           newUser.user_id = user.id;
           newUser.name = user.name;
           newUser.email = user.email;
-          newUser.driver_license = user.drever_license;
+          newUser.driver_license = user.driver_license;
           newUser.avatar = avatar;
           newUser.token = token;
         });
@@ -82,7 +82,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       const response = await userCollection.query().fetch();
 
       if (response.length > 0) {
-        const userData = response[0]._raw as unknown as User;
+        const userData = response[response.length - 1]._raw as unknown as User;
         api.defaults.headers.authorization = `Bearer ${userData.token}`;
         setData(userData);
       }
