@@ -51,7 +51,21 @@ export function Profile() {
   }
 
   async function handleSingOut(): Promise<void> {
-    await SingOut();
+    Alert.alert(
+      'Tem certeza?',
+      'Se você sair irá precisar de internet para conectar-se novamente.',
+      [
+        {
+          text: 'CANCELAR',
+          style: 'default',
+        },
+        {
+          text: 'SAIR',
+          style: 'destructive',
+          onPress: () => SingOut(),
+        },
+      ],
+    );
   }
 
   function handleOptionChange(optionSelected: OptionType) {
