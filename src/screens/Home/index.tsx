@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Alert, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { synchronize } from '@nozbe/watermelondb/sync';
 
+import { database } from '~/database';
 import Logo from '../../assets/logo.svg';
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -52,14 +54,6 @@ export function Home() {
       isMounted = false;
     };
   }, []);
-
-  useEffect(() => {
-    if (netInfo.isConnected) {
-      Alert.alert('Você está OnLine', `${netInfo.type}`);
-    } else {
-      Alert.alert('Você está OffLine', `${netInfo.type}`);
-    }
-  }, [netInfo.type]);
 
   return (
     <Container>
