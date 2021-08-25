@@ -6,10 +6,10 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { synchronize } from '@nozbe/watermelondb/sync';
 
 import { database } from '~/database';
-import Logo from '../../assets/logo.svg';
-import api from '../../services/api';
-import { CarDTO } from '../../dtos/CarDTO';
-import { Car, LoadAnimation } from '../../components';
+import Logo from '~/assets/logo.svg';
+import api from '~/services/api';
+import { CarDTO } from '~/dtos/CarDTO';
+import { Car, LoadAnimation } from '~/components';
 
 import {
   Container,
@@ -29,6 +29,14 @@ export function Home() {
 
   function handleCarDetails(car: CarDTO) {
     navigation.navigate('CarDetails', { car });
+  }
+
+  async function offlineSynchronize() {
+    await synchronize({
+      database,
+      pullChanges: async () => {},
+      pushChanges: async () => {},
+    });
   }
 
   useEffect(() => {

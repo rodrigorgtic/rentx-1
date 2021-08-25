@@ -52,6 +52,10 @@
         "node":{
           "extensions": [".js", ".jsx", ".ts", ".tsx"],
           "moduleDirectory": ["node_modules", "src/"]
+        },
+        "babel-plugin-root-import": {
+          "rootPathPrefix": "~",
+          "rootPathSuffix": "src"
         }
       }
     }
