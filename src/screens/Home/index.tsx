@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'react-native';
+import { StatusBar, Button } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { synchronize } from '@nozbe/watermelondb/sync';
@@ -34,8 +34,20 @@ export function Home() {
   async function offlineSynchronize() {
     await synchronize({
       database,
-      pullChanges: async () => {},
-      pushChanges: async () => {},
+      pullChanges: async ({ lastPulledAt }) => {
+        const { data } = await api.get(
+          `cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`,
+        );
+        const { changes, latestVersion } = data;
+
+        console.log('BACKEND PARA APP');
+        console.log(changes);
+        return { changes, timestamp: latestVersion };
+      },
+      pushChanges: async ({ changes }) => {
+        console.log('APP PARA BACKEND');
+        console.log(changes);
+      },
     });
   }
 
@@ -76,6 +88,7 @@ export function Home() {
           {!loading && <TotalCars>Total {`${cars.length}`} carros</TotalCars>}
         </HeaderContent>
       </Header>
+      <Button title="sincronizar" onPress={offlineSynchronize} />
       {loading ? (
         <LoadContainer>
           <LoadAnimation />
