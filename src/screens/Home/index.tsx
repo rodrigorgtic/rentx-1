@@ -32,21 +32,43 @@ export function Home() {
   }
 
   async function offlineSynchronize() {
+    const carCollection = database.get('cars');
+    const res = await carCollection
+      .query()
+      .fetch()
+      .then((item) => {
+        return item?.map((item: any) => {
+          return {
+            id: item.id,
+            updated_at_: item._raw.updated_at_,
+          };
+        });
+      });
+
     await synchronize({
       database,
-      pullChanges: async ({ lastPulledAt }) => {
-        const { data } = await api.get(
-          `cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`,
-        );
-        const { changes, latestVersion } = data;
+      pullChanges: async ({ }) => {
+        const { data } = await api.get(`cars/sync/pull`, {
+          params: { cars: JSON.stringify(res) }
+        });
 
-        console.log('BACKEND PARA APP');
-        console.log(changes);
+        const { changes, latestVersion } = data;
         return { changes, timestamp: latestVersion };
       },
       pushChanges: async ({ changes }) => {
-        console.log('APP PARA BACKEND');
-        console.log(changes);
+        const userMe = changes.users;
+
+        if (userMe?.updated.length > 0) {
+          const user = {
+            user_id: userMe.updated[0].user_id,
+            name: userMe.updated[0].person_name,
+            driver_license: userMe.updated[0].person_driver_license,
+            avatar: userMe.updated[0].person_avatar,
+            privacy: userMe.updated[0]._privacy,
+          };
+
+          await api.post('users/mobiles/sync', user);
+        }
       },
     });
   }
